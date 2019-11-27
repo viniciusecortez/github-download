@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/" method="post">
+    {% csrf_token %}
+    <label for="user">user</label>
+    {{ form.user }}
+    <label for="repository">repository</label>
+    {{ form.repository }}
+    <label for="path">path</label>
+    {{ form.path }}
+    <button type="submit">Baixar arquivo</button>
+</form>
+</body>
+</html>

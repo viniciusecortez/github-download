@@ -1,4 +1,5 @@
-from django.shortcuts import render
+import requests
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.views.decorators.http import require_GET
@@ -13,6 +14,8 @@ def index(request):
     else:
         form = MainForm(request.POST)
         if form.is_valid():
-            obj = form.save()
-            
-
+            consume_github = form.save()
+            file = open(consume_github.nome_do_arquivo, "wb")
+            file.write(requests.get(consume_github.download_link).text)
+            file.close()
+            return redirect(consume_github.nome_do_arquivo)
